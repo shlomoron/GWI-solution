@@ -14,17 +14,17 @@ Inference must also be done on TPU- for some strange reason, loading the model t
 ## 6. Predicting test labels
 I trained a clasiffying model to classify predicted vel images to families, [see the training notebook here](https://www.kaggle.com/code/shlomoron/gwi-classifier-1). It has the same archtecture as my seis-t-vel models, only it get as input vel instead of seis, and the ouptut is family prediction instead of vel. [Here is the inference notebook on the test set](https://www.kaggle.com/code/shlomoron/gwi-classifier-1-infer) and [here is the inferred labels as a dataset](https://www.kaggle.com/datasets/shlomoron/gwi-test-labels). It would be interesting to compare the family predictions against the groundthruth- I suspect either have a bug smewhere in my pipeline or my validation for the classifier is bad, because I expected better results, hence I thinl that maybe my classifier is not so good as I thought. But I have no way to know without comparing agains the true, hidden test labels.
 ## 7. Ensembling
-Ensembling is, err...how shall I put it, a little bit over-complicated. I'll go over each step and hope I don't miss anything.
-At the beginning, I had one model which I trained with horizontal flip augmantation. Mid-training, I split it to two models, one comtinued to train on the data wiithout flipping, the second continued to train with all the data flipped. So I had two models, 'flipped' and 'non-flipped'. Additionaly, in the last week I trained a third model with emphasis on generated style data (while the former had more emphasis on CurveFault data). So I have 'flipped', 'non-flipped' and 'style' models. For each model, I save in each run of a colab notebook (for 'style' I had a tital of 10 runs, for the other two I had over 40) two checkpoints- the 'best' checkpoint which had the best validation score during the run, and the 'last' checkpoint, which was the last and was the checkpint from whoch I continued the next run.
-For ensembling, I ensembled for each model, separately, several of the 'last' checkpints and the 'best' checkpoints. Then I ensembles the 'last' ensembles of the three models with weights chosen separatly for family, and did the same separately for the 'best' ensembles. Then I ensembled the ensembles of akk the 'last' and 'best' with weight of 0.6-0.4, and finally applied postprocessing on the ultra-mega ensemble. And if you are tired just trying to follow it, imagine me doing it...ensembling is alwyse a bit of black magic, you see :)
-SO lets list the notebooks.
+Ensembling is, err...how shall I put it, a little bit over-complicated. I'll go over each step and hope I don't miss anything.  
+At the beginning, I had one model which I trained with horizontal flip augmantation. Mid-training, I split it to two models, one comtinued to train on the data wiithout flipping, the second continued to train with all the data flipped. So I had two models, 'flipped' and 'non-flipped'. Additionaly, in the last week I trained a third model with emphasis on generated style data (while the former had more emphasis on CurveFault data). So I have 'flipped', 'non-flipped' and 'style' models. For each model, I save in each run of a colab notebook (for 'style' I had a tital of 10 runs, for the other two I had over 40) two checkpoints- the 'best' checkpoint which had the best validation score during the run, and the 'last' checkpoint, which was the last and was the checkpint from whoch I continued the next run.  
+For ensembling, I ensembled for each model, separately, several of the 'last' checkpints and the 'best' checkpoints. Then I ensembles the 'last' ensembles of the three models with weights chosen separatly for family, and did the same separately for the 'best' ensembles. Then I ensembled the ensembles of akk the 'last' and 'best' with weight of 0.6-0.4, and finally applied postprocessing on the ultra-mega ensemble. And if you are tired just trying to follow it, imagine me doing it...ensembling is alwyse a bit of black magic, you see :)  
+SO lets list the notebooks.  
 First, the checkpoint predictions. 
-[Non-flip 1](https://www.kaggle.com/code/shlomoron/gwi-preds-32-36-ds-to-notebook)
-[Non-flip 2](https://www.kaggle.com/code/shlomoron/gwi-preds-37-52-ds-to-notebook)
-[Flip 1](https://www.kaggle.com/code/shlomoron/gwi-preds-32-36-flip-ds-to-notebook)
-[Flip 2](https://www.kaggle.com/code/shlomoron/gwi-preds-37-42-flip-ds-to-notebook)
-[Flip 3](https://www.kaggle.com/code/shlomoron/gwi-preds-43-45-flip-ds-to-notebook)
-[Style](https://www.kaggle.com/code/shlomoron/gwi-preds-6-10-style-ds-to-notebook)
+[Non-flip 1](https://www.kaggle.com/code/shlomoron/gwi-preds-32-36-ds-to-notebook)  
+[Non-flip 2](https://www.kaggle.com/code/shlomoron/gwi-preds-37-52-ds-to-notebook)  
+[Flip 1](https://www.kaggle.com/code/shlomoron/gwi-preds-32-36-flip-ds-to-notebook)  
+[Flip 2](https://www.kaggle.com/code/shlomoron/gwi-preds-37-42-flip-ds-to-notebook)  
+[Flip 3](https://www.kaggle.com/code/shlomoron/gwi-preds-43-45-flip-ds-to-notebook)  
+[Style](https://www.kaggle.com/code/shlomoron/gwi-preds-6-10-style-ds-to-notebook)  
 
 
 
