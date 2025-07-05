@@ -40,7 +40,7 @@ Ensembles of three models together:
 [Last ensemble](https://www.kaggle.com/code/shlomoron/gwi-ensemble-flip-noflip-style)  
 [Best ensemble](https://www.kaggle.com/code/shlomoron/gwi-ensemble-flip-noflip-style-best)  
 
-[The final-ensemble](https://www.kaggle.com/code/shlomoron/gwi-ensemble-best-nobest-w-style-4-6-weights/notebook)  
+[The final ensemble](https://www.kaggle.com/code/shlomoron/gwi-ensemble-best-nobest-w-style-4-6-weights/notebook)  
 
 [Postprocessing the final ensemble- final submission](https://www.kaggle.com/code/shlomoron/gwi-ensemble-postprocessing-2/notebook)  
 
