@@ -11,7 +11,7 @@ In order to train on Colab, I feed the model the path to GCP buckets with TFReco
 I attach one of my Colab notebook for refernces, I had to chain several tens of such notebooks to train each model. [See the example notebook here](https://colab.research.google.com/drive/1kshcWCi8hbZtJVijVv2pez9PvAmxGjR_?usp=drive_link).   
 ## 5. Infer
 Inference must also be done on TPU- for some strange reason, loading the model to GPU lead to lower accuracy. To infer, just construct the model exactly as in train and predict on the test set. [here is an example for one checkpint](https://colab.research.google.com/drive/1EuTwKgrXDsfE8yNLfgWcR7FMynUhTiwx?usp=sharing).  
-## 6. Predicting test labels
+## 6. Predicting family
 I trained a clasiffying model to classify predicted vel images to families, [see the training notebook here](https://www.kaggle.com/code/shlomoron/gwi-classifier-1). It has the same archtecture as my seis-t-vel models, only it get as input vel instead of seis, and the ouptut is family prediction instead of vel. [Here is the inference notebook on the test set](https://www.kaggle.com/code/shlomoron/gwi-classifier-1-infer) and [here is the inferred labels as a dataset](https://www.kaggle.com/datasets/shlomoron/gwi-test-labels). It would be interesting to compare the family predictions against the groundthruth- I suspect either have a bug smewhere in my pipeline or my validation for the classifier is bad, because I expected better results, hence I thinl that maybe my classifier is not so good as I thought. But I have no way to know without comparing agains the true, hidden test labels.
 ## 7. Ensembling
 Ensembling is, err...how shall I put it, a little bit over-complicated. I'll go over each step and hope I don't miss anything.  
